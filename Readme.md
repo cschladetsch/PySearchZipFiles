@@ -16,13 +16,13 @@ No special installation is required beyond standard Python libraries. Simply dow
 
 ```bash
 # Clone this repository or download the script
-git clone https://github.com/cschladetsch/zipfinder.git
+git clone https://github.com/yourusername/zipfinder.git
 ```
 
 ## Usage
 
 ```bash
-python zipfinder.py [ROOT_FOLDER] [-p PATTERN] [-v]
+python zipfinder.py ROOT_FOLDER [-p PATTERN] [-v]
 ```
 
 ### Arguments
@@ -53,6 +53,18 @@ python zipfinder.py /path/to/search -p "\.pdf$" -v
 python zipfinder.py GoogleTakeout -p "STL" -v
 ```
 
+**Important Note: Regular Expressions vs. Shell Wildcards**
+
+The `-p` parameter uses regular expressions, not shell-style wildcards:
+
+```bash
+# Incorrect (shell wildcard) - will cause an error:
+python zipfinder.py /path/to/search -p "*.mp4"
+
+# Correct (regular expression) - will find MP4 files:
+python zipfinder.py /path/to/search -p ".*\.mp4$"
+```
+
 ## Output
 
 In normal mode (without `-v`), the script only displays files that match the pattern:
@@ -72,7 +84,7 @@ Contents of: /path/to/file1.zip
 Searching for files matching pattern: 'pattern'
 --------------------------------------------------
 1. file1.txt
-2. matching_file.txt (MATCH)
+2. matching_file.txt
 3. document.pdf
 
 Found 1 matching files in this archive.
@@ -82,14 +94,6 @@ Found 1 matching files in this archive.
 Total zip files found: 15
 Total files matching pattern 'pattern': 5
 ```
-
-## Error Handling
-
-The script includes robust error handling for:
-- Invalid zip files
-- Non-existent directories
-- Permission issues
-- General exceptions during file operations
 
 ## Requirements
 
