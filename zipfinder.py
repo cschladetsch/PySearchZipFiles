@@ -1,7 +1,7 @@
+import argparse
 import os
 import re
 import zipfile
-import argparse
 from pathlib import Path
 
 
@@ -31,7 +31,7 @@ def find_and_read_zip_files(root_folder, pattern=None, verbose=False):
     total_matches = 0
     
     # Walk through all subdirectories
-    for dirpath, dirnames, filenames in os.walk(root_path):
+    for dirpath, _dirnames, filenames in os.walk(root_path):
         # Filter for zip files
         zip_files = [f for f in filenames if f.lower().endswith('.zip')]
         
@@ -92,9 +92,13 @@ def main():
     )
     
     parser.add_argument('root', help='Root folder path to search for zip files')
-    parser.add_argument('-p', '--pattern', help='Regular expression pattern to search for within zip files')
-    parser.add_argument('-v', '--verbose', action='store_true', 
-                        help='Verbose mode - show detailed listings of zip contents')
+    parser.add_argument(
+        '-p', '--pattern', help='Regular expression pattern to search for within zip files'
+    )
+    parser.add_argument(
+        '-v', '--verbose', action='store_true',
+        help='Verbose mode - show detailed listings of zip contents'
+    )
     
     # Parse arguments
     args = parser.parse_args()
