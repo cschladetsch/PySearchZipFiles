@@ -16,7 +16,7 @@ No special installation is required beyond standard Python libraries. Simply dow
 
 ```bash
 # Clone this repository or download the script
-git clone https://github.com/yourusername/zipfinder.git
+git clone https://github.com/cschladetsch/zipfinder.git
 ```
 
 ## Usage
